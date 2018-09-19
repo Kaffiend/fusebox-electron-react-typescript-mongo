@@ -2,31 +2,41 @@
 // first file that is run on startup.
 //
 // It is responsible for launching a renderer window.
-import { app, } from "electron"
-import { createMainWindow } from "./main-window"
-import * as log from "electron-log"
-import * as isDev from "electron-is-dev"
-import { createUpdater } from "./lib/updater"
-import { createMenu } from "./menu"
+import { app } from 'electron';
+import { createMainWindow } from './main-window';
+import * as log from 'electron-log';
+import * as isDev from 'electron-is-dev';
+import { createUpdater } from './lib/updater';
+import { createMenu } from './menu';
+import installExtension, {
+    REACT_DEVELOPER_TOOLS,
+    REDUX_DEVTOOLS
+} from 'electron-devtools-installer';
 
 // set proper logging level
-log.transports.file.level = isDev ? false : "info"
-log.transports.console.level = isDev ? "debug" : false
+log.transports.file.level = isDev ? false : 'info';
+log.transports.console.level = isDev ? 'debug' : false;
 
-let window: Electron.BrowserWindow
+let window: Electron.BrowserWindow;
 
 // usually we'd just use __dirname here, however, the FuseBox
 // bundler rewrites that, so we have to get it from Electron.
-const appPath = './out'
+const appPath = './out';
 
 // fires when Electron is ready to start
-app.on("ready", () => {
-  window = createMainWindow(appPath)
-  createMenu(window)
-})
+app.on('ready', () => {
+    installExtension(REACT_DEVELOPER_TOOLS)
+        .then((name: string) => console.log(`Added Extension:  ${name}`))
+        .catch((err: Error) => console.log('An error occurred: ', err));
+    installExtension(REDUX_DEVTOOLS)
+        .then((name: string) => console.log(`Added Extension:  ${name}`))
+        .catch((err: Error) => console.log('An error occurred: ', err));
+    window = createMainWindow(appPath);
+    createMenu(window);
+});
 
 // fires when all windows are closed
-app.on("window-all-closed", app.quit)
+app.on('window-all-closed', app.quit);
 
 // setup the auto-updater
-createUpdater(app)
+createUpdater(app);
