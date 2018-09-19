@@ -19,5 +19,12 @@ function configureStore(initialState?: {}) {
 // pass an optional param to rehydrate state on app start
 const store = configureStore();
 
+// this is for reloading the reducers should they change on HMR events.
+if (typeof module.hot !== 'undefined') {
+    module.hot.accept('../reducers', () =>
+        store.replaceReducer(require('../reducers').rootReducer)
+    );
+}
+
 // export store singleton instance
 export default store;
