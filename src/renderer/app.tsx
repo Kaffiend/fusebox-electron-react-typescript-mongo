@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { Router, Route, Switch } from 'react-router';
-import { Root } from './containers/Root';
-import { LoginPage } from './containers/Login';
+import { Root } from './containers/Root/Root';
+import { LoginPage } from './containers/Login/LoginPage';
 
 // render react DOM
 export const App = hot(module)(({ history }) => (

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TodoItem, TodoActions } from '../TodoItem';
+import { TodoItem, TodoActions } from '../TodoItem/TodoItem';
 import { TodoModel } from '../../models/TodoModel';
 import * as style from './style.css';
 

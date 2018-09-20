@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as style from './style.css';
 import { inject, observer } from 'mobx-react';
 import { RouteComponentProps } from 'react-router';
-import { Header } from '../../components/Header';
-import { TodoList } from '../..//components/TodoList';
-import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header/Header';
+import { TodoList } from '../../components/TodoList/TodoList';
+import { Footer } from '../../components/Footer/Footer';
 import { TodoStore, RouterStore } from '../../store';
 import {
   STORE_TODO,
