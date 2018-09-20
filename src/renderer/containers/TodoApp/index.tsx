@@ -10,7 +10,8 @@ import {
   STORE_TODO,
   STORE_ROUTER,
   TODO_FILTER_LOCATION_HASH,
-  TodoFilter
+  TodoFilter,
+  STORE_FORMS
 } from '../../constants';
 
 export interface TodoAppProps extends RouteComponentProps<any> {
@@ -23,7 +24,7 @@ export interface TodoAppState {
   filter: TodoFilter;
 }
 
-@inject(STORE_TODO, STORE_ROUTER)
+@inject(STORE_TODO, STORE_ROUTER, STORE_FORMS)
 @observer
 export class TodoApp extends React.Component<TodoAppProps, TodoAppState> {
   constructor(props: TodoAppProps, context: any) {

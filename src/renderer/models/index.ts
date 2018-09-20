@@ -1,3 +1,4 @@
 import TodoModel from './TodoModel';
+import FormModel from './FormModel';
 
-export { TodoModel };
+export { TodoModel, FormModel };
