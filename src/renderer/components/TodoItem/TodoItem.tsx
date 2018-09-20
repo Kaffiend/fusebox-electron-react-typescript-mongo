@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { TodoTextInput } from '../TodoTextInput';
+import { TodoTextInput } from '../TodoTextInput/TodoTextInput';
 import { TodoModel } from '../../models/TodoModel';
 import * as style from './style.css';
 
