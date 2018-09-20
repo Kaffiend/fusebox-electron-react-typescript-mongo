@@ -43,9 +43,11 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
     render() {
         return (
             <div>
-                <Form schema={this.state.form.formProps.schema}
+                <Form
+                    schema={this.state.form.formProps.schema}
                     uiSchema={this.state.form.formProps.uiSchema}
-                    onSubmit={this.submitForm}/>
+                    onSubmit={this.submitForm}
+                />
             </div>
         );
     }

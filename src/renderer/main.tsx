@@ -32,6 +32,9 @@ const loginForm: FormProps<LoginForm> = {
     }
   },
   uiSchema: {
+    username: {
+      'ui:autofocus': true
+    },
     password: {
       'ui:widget': 'password'
     }
