@@ -45,7 +45,7 @@ Sparky.task("default", ["copy-html"], () => {
   // bundle the electron renderer code
   const rendererBundle = fuse
     .bundle("renderer")
-    .instructions(">renderer/index.tsx +fuse-box-css")
+    .instructions(">renderer/main.tsx +fuse-box-css")
     .plugin(CSSPlugin())
     .plugin(CopyPlugin({ useDefault: false, files: ASSETS, dest: "assets", resolve: "assets/" }))
 

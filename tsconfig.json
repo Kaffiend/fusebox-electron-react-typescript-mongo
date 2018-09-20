@@ -8,8 +8,8 @@
       "allowSyntheticDefaultImports": true,
       "noUnusedLocals": true,
       "strictNullChecks": false,
-      "noImplicitReturns": true,
-      "noImplicitAny": true
+      "noImplicitReturns": false,
+      "noImplicitAny": false
     },
     "include": ["src", "typings", "package.json", "fuse.ts"],
     "exclude": [
