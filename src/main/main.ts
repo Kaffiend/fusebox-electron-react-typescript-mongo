@@ -9,8 +9,7 @@ import * as isDev from 'electron-is-dev';
 import { createUpdater } from './lib/updater';
 import { createMenu } from './menu';
 import installExtension, {
-    REACT_DEVELOPER_TOOLS,
-    REDUX_DEVTOOLS
+    MOBX_DEVTOOLS
 } from 'electron-devtools-installer';
 
 // set proper logging level
@@ -25,10 +24,7 @@ const appPath = './out';
 
 // fires when Electron is ready to start
 app.on('ready', () => {
-    installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name: string) => console.log(`Added Extension:  ${name}`))
-        .catch((err: Error) => console.log('An error occurred: ', err));
-    installExtension(REDUX_DEVTOOLS)
+    installExtension(MOBX_DEVTOOLS)
         .then((name: string) => console.log(`Added Extension:  ${name}`))
         .catch((err: Error) => console.log('An error occurred: ', err));
     window = createMainWindow(appPath);
