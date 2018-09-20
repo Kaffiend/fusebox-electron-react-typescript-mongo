@@ -27,7 +27,13 @@ const loginForm: FormProps<LoginForm> = {
     ],
     properties: {
       username: {type: 'string', title: 'Username'},
-      password: {type: 'string', title: 'Password'}
+      password: {type: 'string', title: 'Password' },
+      remember: {type: 'boolean', title: 'Remember me?'}
+    }
+  },
+  uiSchema: {
+    password: {
+      'ui:widget': 'password'
     }
   }
 }

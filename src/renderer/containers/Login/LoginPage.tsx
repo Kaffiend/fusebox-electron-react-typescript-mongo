@@ -6,7 +6,7 @@ import { FormStore } from '../../store';
 import { STORE_FORMS } from '../../constants';
 import { FormModel } from '../../models';
 import { LoginForm } from '../../constants/forms';
-import Form from 'react-jsonschema-form';
+import Form, { IChangeEvent } from 'react-jsonschema-form';
 
 export interface LoginProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
@@ -36,10 +36,16 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
         this.setState({ form: loginForm });
     }
 
+    submitForm(e: IChangeEvent<LoginForm>) {
+        console.log(e);
+    }
+
     render() {
         return (
             <div>
-                <Form schema={this.state.form.formProps.schema} />
+                <Form schema={this.state.form.formProps.schema}
+                    uiSchema={this.state.form.formProps.uiSchema}
+                    onSubmit={this.submitForm}/>
             </div>
         );
     }
