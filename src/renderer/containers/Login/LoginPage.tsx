@@ -7,6 +7,7 @@ import { STORE_FORMS } from '../../constants';
 import { FormModel } from '../../models';
 import { LoginForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
+import { TodoApp } from '../TodoApp/TodoApp';
 
 export interface LoginProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
@@ -36,8 +37,16 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
         this.setState({ form: loginForm });
     }
 
+    /**
+     * On Successful login from DB if remember checked store username in render process local storage
+     * and use for initialization (re-hydration of state) on subsequent logins.
+     */
     submitForm(e: IChangeEvent<LoginForm>) {
         console.log(e);
+        //TODO: After database integration this only happens on successful login.
+        if (e.formData.remember) {
+            localStorage.setItem('username', e.formData.username);
+        }
     }
 
     render() {

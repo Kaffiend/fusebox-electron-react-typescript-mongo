@@ -12,6 +12,8 @@ import installExtension, {
     MOBX_DEVTOOLS
 } from 'electron-devtools-installer';
 
+
+
 // set proper logging level
 log.transports.file.level = isDev ? false : 'info';
 log.transports.console.level = isDev ? 'debug' : false;
@@ -24,9 +26,11 @@ const appPath = './out';
 
 // fires when Electron is ready to start
 app.on('ready', () => {
-    installExtension(MOBX_DEVTOOLS)
-        .then((name: string) => console.log(`Added Extension:  ${name}`))
-        .catch((err: Error) => console.log('An error occurred: ', err));
+    if (process.env.NODE_ENV !== 'production') {
+        installExtension(MOBX_DEVTOOLS)
+            .then((name: string) => console.log(`Added Extension:  ${name}`))
+            .catch((err: Error) => console.log('An error occurred: ', err));
+    }
     window = createMainWindow(appPath);
     createMenu(window);
 });

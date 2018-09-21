@@ -1,0 +1,7 @@
+Client Settings:
+  ☐ Implement Client Settings for connection strings.
+  ☐ Add Test Connection to Client Settings, confirmation.
+Login Screen:
+  ☐ Integrate Database for user login.
+  ☐ On Successful login save username to localstorage if remember is true.
+
