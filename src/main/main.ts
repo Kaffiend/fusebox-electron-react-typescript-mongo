@@ -9,10 +9,10 @@ import * as isDev from 'electron-is-dev';
 import { createUpdater } from './lib/updater';
 import { createMenu } from './menu';
 import installExtension, {
-    MOBX_DEVTOOLS
+    MOBX_DEVTOOLS,
+    
 } from 'electron-devtools-installer';
-
-
+import * as devtron from 'devtron';
 
 // set proper logging level
 log.transports.file.level = isDev ? false : 'info';
@@ -30,6 +30,7 @@ app.on('ready', () => {
         installExtension(MOBX_DEVTOOLS)
             .then((name: string) => console.log(`Added Extension:  ${name}`))
             .catch((err: Error) => console.log('An error occurred: ', err));
+        devtron.install();
     }
     window = createMainWindow(appPath);
     createMenu(window);
