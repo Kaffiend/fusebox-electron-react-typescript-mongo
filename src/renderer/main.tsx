@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 import { TodoModel } from './models';
 import { createStores } from './store';
 import { App } from './app';
-import 'bootstrap/dist/css/bootstrap.min.css'
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import { DefaultForms } from './constants/forms';
 
 
