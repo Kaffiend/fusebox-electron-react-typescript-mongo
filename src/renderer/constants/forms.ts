@@ -1,13 +1,13 @@
 import { FormProps } from 'react-jsonschema-form'
 import { FormModel } from '../models';
 
-export interface LoginForm {
+export interface ILoginForm {
    username: string;
    password: string;
    remember?: boolean;
 }
 
-export interface ServerSettingsForm {
+export interface IServerSettingsForm {
     address: string;
     port: number;
     username: string;
@@ -15,7 +15,7 @@ export interface ServerSettingsForm {
     remember: boolean;
 }
 
-export const LoginForm: FormProps<LoginForm> = {
+export const LoginForm: FormProps<ILoginForm> = {
     schema: {
       title: 'Secure Login',
       type: 'object',
@@ -39,7 +39,7 @@ export const LoginForm: FormProps<LoginForm> = {
     }
   }
   
-  export const ServerSettingsForm: FormProps<ServerSettingsForm> = {
+  export const ServerSettingsForm: FormProps<IServerSettingsForm> = {
     schema: {
       title: 'Server Settings',
       type: 'object',

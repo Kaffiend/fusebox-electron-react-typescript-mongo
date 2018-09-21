@@ -7,7 +7,7 @@ import {
   TODO_FILTER_TYPES
 } from '../../constants';
 
-export interface FooterProps {
+export interface IFooterProps {
   filter: TodoFilter;
   activeCount: number;
   completedCount: number;
@@ -15,11 +15,11 @@ export interface FooterProps {
   onClearCompleted: () => any;
 }
 
-export interface FooterState {
+export interface IFooterState {
   /* empty */
 }
 
-export class Footer extends React.Component<FooterProps, FooterState> {
+export class Footer extends React.Component<IFooterProps, IFooterState> {
   renderTodoCount() {
     const { activeCount } = this.props;
     const itemWord = activeCount === 1 ? 'item' : 'items';

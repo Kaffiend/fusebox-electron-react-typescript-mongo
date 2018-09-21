@@ -12,7 +12,7 @@ export default class FormModel<T> {
     public formProps: FormProps<T>;
 
     /*
-     *  Accepts a generic interface for the FormProps Schema.
+     *  Accepts a generic interface Ifor the FormProps Schema.
      */
     constructor(name: string, description: string, formProps: FormProps<T>) {
         this.id = FormModel.generateId();

@@ -5,24 +5,24 @@ import { FormStore, RouterStore } from '../../store';
 
 import { STORE_FORMS, STORE_ROUTER, FormTypes } from '../../constants';
 import { FormModel } from '../../models';
-import { ServerSettingsForm } from '../../constants/forms';
+import { IServerSettingsForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
 import { RootRoutes } from '../../constants/routes';
 
-export interface ServerSettingsProps extends RouteComponentProps<any> {
+export interface IServerSettingsProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
     // [STORE_FORMS]: FormsStore
 }
 
-export interface ServerSettingsState {
+export interface IServerSettingsState {
     formName: string;
     form: FormModel<FormTypes>;
 }
 
 @inject(STORE_FORMS, STORE_ROUTER)
 @observer
-export class ServerSettingsPage extends React.Component<ServerSettingsProps, ServerSettingsState> {
-    constructor(props: ServerSettingsProps, context: any) {
+export class ServerSettingsPage extends React.Component<IServerSettingsProps, IServerSettingsState> {
+    constructor(props: IServerSettingsProps, context: any) {
         super(props, context);
         this.state = { formName: 'Server Settings', form: null };
     }
@@ -41,7 +41,7 @@ export class ServerSettingsPage extends React.Component<ServerSettingsProps, Ser
      * On Successful login from DB if remember checked store username in render process local storage
      * and use for initialization (re-hydration of state) on subsequent logins.
      */
-    submitForm(e: IChangeEvent<ServerSettingsForm>) {
+    submitForm(e: IChangeEvent<IServerSettingsForm>) {
         console.log(e);
         //TODO: After database integration this only happens on successful login.
         if (e.formData.remember) {

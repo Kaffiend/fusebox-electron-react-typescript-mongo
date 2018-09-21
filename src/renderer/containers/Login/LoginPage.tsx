@@ -5,24 +5,24 @@ import { FormStore, RouterStore } from '../../store';
 
 import { STORE_FORMS, STORE_ROUTER, FormTypes } from '../../constants';
 import { FormModel } from '../../models';
-import { LoginForm } from '../../constants/forms';
+import { ILoginForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
 import { RootRoutes } from '../../constants/routes';
 
-export interface LoginProps extends RouteComponentProps<any> {
+export interface ILoginProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
     // [STORE_FORMS]: FormsStore
 }
 
-export interface LoginState {
+export interface ILoginState {
     formName: string;
     form: FormModel<FormTypes>;
 }
 
 @inject(STORE_FORMS, STORE_ROUTER)
 @observer
-export class LoginPage extends React.Component<LoginProps, LoginState> {
-    constructor(props: LoginProps, context: any) {
+export class LoginPage extends React.Component<ILoginProps, ILoginState> {
+    constructor(props: ILoginProps, context: any) {
         super(props, context);
         this.state = { formName: 'Login', form: null };
     }
@@ -41,7 +41,7 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
      * On Successful login from DB if remember checked store username in render process local storage
      * and use for initialization (re-hydration of state) on subsequent logins.
      */
-    submitForm(e: IChangeEvent<LoginForm>) {
+    submitForm(e: IChangeEvent<ILoginForm>) {
         console.log(e);
         //TODO: After database integration this only happens on successful login.
         if (e.formData.remember) {
