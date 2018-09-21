@@ -4,21 +4,21 @@ import { TodoTextInput } from '../TodoTextInput/TodoTextInput';
 import { TodoModel } from '../../models/TodoModel';
 import * as style from './style.css';
 
-export interface TodoActions {
+export interface ITodoActions {
   editTodo: (id: number, data: Partial<TodoModel>) => any;
   deleteTodo: (id: number) => any;
 }
 
-export interface TodoProps extends TodoActions {
+export interface ITodoProps extends ITodoActions {
   todo: TodoModel;
 }
 
-export interface TodoState {
+export interface ITodoState {
   editing: boolean;
 }
 
-export class TodoItem extends React.Component<TodoProps, TodoState> {
-  constructor(props?: TodoProps, context?: any) {
+export class TodoItem extends React.Component<ITodoProps, ITodoState> {
+  constructor(props?: ITodoProps, context?: any) {
     super(props, context);
     this.state = { editing: false };
   }

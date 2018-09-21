@@ -2,15 +2,15 @@ import * as React from 'react';
 import { TodoTextInput } from '../TodoTextInput/TodoTextInput';
 import { TodoModel } from '../../models/TodoModel';
 
-export interface HeaderProps {
+export interface IHeaderProps {
   addTodo: (todo: Partial<TodoModel>) => any;
 }
 
-export interface HeaderState {
+export interface IHeaderState {
   /* empty */
 }
 
-export class Header extends React.Component<HeaderProps, HeaderState> {
+export class Header extends React.Component<IHeaderProps, IHeaderState> {
   private handleSave = (text: string) => {
     if (text.length) {
       this.props.addTodo({ text });
