@@ -1,29 +1,29 @@
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import { RouteComponentProps } from 'react-router';
-import { FormStore, RouterStore } from '../../store';
+import { FormStore } from '../../store';
 
 import { STORE_FORMS, STORE_ROUTER, FormTypes } from '../../constants';
 import { FormModel } from '../../models';
-import { LoginForm } from '../../constants/forms';
+import { ServerSettingsForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
 
-export interface LoginProps extends RouteComponentProps<any> {
+export interface ServerSettingsProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
     // [STORE_FORMS]: FormsStore
 }
 
-export interface LoginState {
+export interface ServerSettingsState {
     formName: string;
     form: FormModel<FormTypes>;
 }
 
 @inject(STORE_FORMS, STORE_ROUTER)
 @observer
-export class LoginPage extends React.Component<LoginProps, LoginState> {
-    constructor(props: LoginProps, context: any) {
+export class ServerSettingsPage extends React.Component<ServerSettingsProps, ServerSettingsState> {
+    constructor(props: ServerSettingsProps, context: any) {
         super(props, context);
-        this.state = { formName: 'Login', form: null };
+        this.state = { formName: 'Server Settings', form: null };
     }
 
     componentWillMount() {
@@ -32,15 +32,15 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
 
     loadFormSchema() {
         const forms = this.props[STORE_FORMS] as FormStore;
-        const loginForm = forms.findForm(this.state.formName);
-        this.setState({ form: loginForm });
+        const serverSettingsForm = forms.findForm(this.state.formName);
+        this.setState({ form: serverSettingsForm });
     }
 
     /**
      * On Successful login from DB if remember checked store username in render process local storage
      * and use for initialization (re-hydration of state) on subsequent logins.
      */
-    submitForm(e: IChangeEvent<LoginForm>) {
+    submitForm(e: IChangeEvent<ServerSettingsForm>) {
         console.log(e);
         //TODO: After database integration this only happens on successful login.
         if (e.formData.remember) {
@@ -57,7 +57,7 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
                     uiSchema={this.state.form.formProps.uiSchema}
                     onSubmit={this.submitForm}
                 />
-                <button onClick={() => push('/serversettings')}>Server Settings</button>
+                <button onClick={() => push('/')}>Back</button>
             </div>
         );
     }

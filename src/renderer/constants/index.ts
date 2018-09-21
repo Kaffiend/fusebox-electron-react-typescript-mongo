@@ -1,6 +1,6 @@
 export * from './stores';
 export * from './todos';
 
-import { LoginForm } from './forms';
+import { LoginForm, ServerSettingsForm } from './forms';
 
- export type FormTypes = LoginForm
+ export type FormTypes = LoginForm | ServerSettingsForm
