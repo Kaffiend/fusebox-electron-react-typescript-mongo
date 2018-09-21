@@ -7,7 +7,6 @@ import { STORE_FORMS } from '../../constants';
 import { FormModel } from '../../models';
 import { LoginForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
-import { Mongo } from '../../../main/mongo';
 
 export interface LoginProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
