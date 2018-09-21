@@ -7,6 +7,7 @@ import { STORE_FORMS } from '../../constants';
 import { FormModel } from '../../models';
 import { LoginForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
+import { UserChannels, UserEvents } from '../../../main/mongo/constants/users'
 //import { UserChannels, UserEvents } from '../../../main/mongo/constants/users';
 
 
@@ -44,7 +45,7 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
      */
     async submitForm(e: IChangeEvent<LoginForm>) {
         console.log(e);
-        ipcRenderer.send(`LOGIN_CHANNEL::LOGIN_ATTEMPT`, e.formData);
+        ipcRenderer.send(`${UserChannels.LOGIN_CHANNEL}${UserEvents.LOGIN_ATTEMPT}`, e.formData);
         //TODO: After database integration this only happens on successful login.
         if (e.formData.remember) {
             localStorage.setItem('username', e.formData.username);
