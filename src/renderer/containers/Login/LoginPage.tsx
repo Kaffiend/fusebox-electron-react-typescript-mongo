@@ -7,6 +7,7 @@ import { STORE_FORMS, STORE_ROUTER, FormTypes } from '../../constants';
 import { FormModel } from '../../models';
 import { LoginForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
+import { RootRoutes } from '../../constants/routes';
 
 export interface LoginProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
@@ -57,7 +58,7 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
                     uiSchema={this.state.form.formProps.uiSchema}
                     onSubmit={this.submitForm}
                 />
-                <button onClick={() => push('/serversettings')}>Server Settings</button>
+                <button onClick={() => push(RootRoutes.ServerSettings)}>Server Settings</button>
             </div>
         );
     }
