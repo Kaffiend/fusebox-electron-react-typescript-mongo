@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 import { TodoModel, FormModel } from './models';
 import { createStores } from './store';
 import { App } from './app';
-import 'bootstrap/dist/css/bootstrap.min.css'
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import { FormProps } from 'react-jsonschema-form';
 import { LoginForm } from './constants/forms';
 

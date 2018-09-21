@@ -8,15 +8,14 @@ export function loadURL(
   window: Electron.BrowserWindow,
   appPath: string
 ) {
-  if (dev) {
-    window.loadURL('http://localhost:4445')
-  } else {
+  // if (dev) {
+  //   window.loadURL('http://localhost:4445')
+  // } else {
     window.loadURL(
       format({
-        pathname: join(appPath, "out/index.html"),
+        pathname: join(appPath, "./index.html"),
         protocol: "file:",
         slashes: true,
       }),
     )
   }
-}

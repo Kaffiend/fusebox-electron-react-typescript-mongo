@@ -2,7 +2,7 @@
 // first file that is run on startup.
 //
 // It is responsible for launching a renderer window.
-import { app } from 'electron';
+import { app, ipcMain } from 'electron';
 import { createMainWindow } from './main-window';
 import * as log from 'electron-log';
 import * as isDev from 'electron-is-dev';
@@ -13,6 +13,9 @@ import installExtension, {
     
 } from 'electron-devtools-installer';
 import * as devtron from 'devtron';
+import container from './inversify.config';
+import { RegisterableController } from './mongo/controllers/RegisterableController';
+import TYPES from './types';
 
 // set proper logging level
 log.transports.file.level = isDev ? false : 'info';
@@ -32,6 +35,12 @@ app.on('ready', () => {
             .catch((err: Error) => console.log('An error occurred: ', err));
         devtron.install();
     }
+    //call DI Container to register controller's listeners
+    const controllers: RegisterableController[] = container.getAll<RegisterableController>(TYPES.Controller);
+    controllers.forEach(c => {
+        c.register(ipcMain);
+    })
+    
     window = createMainWindow(appPath);
     createMenu(window);
 });

@@ -2,11 +2,13 @@ import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import { RouteComponentProps } from 'react-router';
 import { FormStore } from '../../store';
-
+import { ipcRenderer } from 'electron';
 import { STORE_FORMS } from '../../constants';
 import { FormModel } from '../../models';
 import { LoginForm } from '../../constants/forms';
 import Form, { IChangeEvent } from 'react-jsonschema-form';
+//import { UserChannels, UserEvents } from '../../../main/mongo/constants/users';
+
 
 export interface LoginProps extends RouteComponentProps<any> {
     //** MobX Stores injected via @inject() */
@@ -40,8 +42,9 @@ export class LoginPage extends React.Component<LoginProps, LoginState> {
      * On Successful login from DB if remember checked store username in render process local storage
      * and use for initialization (re-hydration of state) on subsequent logins.
      */
-    submitForm(e: IChangeEvent<LoginForm>) {
+    async submitForm(e: IChangeEvent<LoginForm>) {
         console.log(e);
+        ipcRenderer.send(`LOGIN_CHANNEL::LOGIN_ATTEMPT`, e.formData);
         //TODO: After database integration this only happens on successful login.
         if (e.formData.remember) {
             localStorage.setItem('username', e.formData.username);

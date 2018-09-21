@@ -1,0 +1,2 @@
+//db.users.insert({username: 'ian',password: 'password', remember: false});
+db.users.find()
