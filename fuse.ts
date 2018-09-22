@@ -36,7 +36,7 @@ Sparky.task("default", ["copy-html"], () => {
     .bundle("main")
     .target("server")
     .instructions("> [main/main.ts]")
-    // inject in some configuration
+  // inject in some configuration
   // and watch unless we're bundling for production
   if (!isProduction) {
     mainBundle.watch()
@@ -59,10 +59,14 @@ Sparky.task("default", ["copy-html"], () => {
   return fuse.run().then(() => {
     if (!isProduction) {
       // startup electron
-      exec('electron ./out/main.js').on("exit", code => {
-        console.log(`electron process exited with code ${code}`)
-        process.exit(code)
-      })
+      exec('electron ./out/main.js')
+        .on('message', msg => {
+          console.log(msg);
+        })
+        .on("exit", code => {
+          console.log(`electron process exited with code ${code}`)
+          process.exit(code)
+        })
     }
   })
 })
