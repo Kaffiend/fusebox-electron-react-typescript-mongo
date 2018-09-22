@@ -14,20 +14,20 @@ import {
   STORE_FORMS
 } from '../../constants';
 
-export interface TodoAppProps extends RouteComponentProps<any> {
+export interface ITodoAppProps extends RouteComponentProps<any> {
   /** MobX Stores will be injected via @inject() **/
   // [STORE_ROUTER]: RouterStore;
   // [STOURE_TODO]: TodoStore;
 }
 
-export interface TodoAppState {
+export interface ITodoAppState {
   filter: TodoFilter;
 }
 
 @inject(STORE_TODO, STORE_ROUTER, STORE_FORMS)
 @observer
-export class TodoApp extends React.Component<TodoAppProps, TodoAppState> {
-  constructor(props: TodoAppProps, context: any) {
+export class TodoApp extends React.Component<ITodoAppProps, ITodoAppState> {
+  constructor(props: ITodoAppProps, context: any) {
     super(props, context);
     this.state = { filter: TodoFilter.ALL };
   }
@@ -36,7 +36,7 @@ export class TodoApp extends React.Component<TodoAppProps, TodoAppState> {
     this.checkLocationChange();
   }
 
-  componentWillReceiveProps(nextProps: TodoAppProps, nextContext: any) {
+  componentWillReceiveProps(nextProps: ITodoAppProps, nextContext: any) {
     this.checkLocationChange();
   }
 

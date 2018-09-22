@@ -1,4 +1,7 @@
+import { ObjectId } from "bson";
+
 export class User {
+    _id: ObjectId;
     username: string;
     password: string;
     remember: boolean;

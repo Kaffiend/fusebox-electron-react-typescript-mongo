@@ -14,7 +14,7 @@ export class FormStore {
     public forms: Array<FormModel<FormTypes>>;
 
     @action
-    findForm(formName: string) {
+    findForm(formName: string) : FormModel<FormTypes>{
         return this.forms.filter((f) => f.name == formName)[0];
     }
 

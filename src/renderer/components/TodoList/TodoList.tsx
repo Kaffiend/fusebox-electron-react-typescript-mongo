@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { TodoItem, TodoActions } from '../TodoItem/TodoItem';
+import { TodoItem, ITodoActions } from '../TodoItem/TodoItem';
 import { TodoModel } from '../../models/TodoModel';
 import * as style from './style.css';
 
-export interface TodoListProps extends TodoActions {
+export interface ITodoListProps extends ITodoActions {
   todos: TodoModel[];
   completeAll: () => any;
 }
 
-export interface TodoListState {}
+export interface ITodoListState {}
 
-export class TodoList extends React.Component<TodoListProps, TodoListState> {
-  constructor(props?: TodoListProps, context?: any) {
+export class TodoList extends React.Component<ITodoListProps, ITodoListState> {
+  constructor(props?: ITodoListProps, context?: any) {
     super(props, context);
   }
 
