@@ -1,9 +1,9 @@
-import { FuseBox, CSSPlugin, Sparky, CopyPlugin } from "fuse-box"
+import { FuseBox, CSSPlugin, Sparky } from "fuse-box"
 import { exec } from "child_process"
 
 const DEV_PORT = 4445
 const OUTPUT_DIR = "out"
-const ASSETS = ["*.jpg", "*.png", "*.jpeg", "*.gif", "*.svg"]
+//const ASSETS = ["*.jpg", "*.png", "*.jpeg", "*.gif", "*.svg"]
 
 // are we running in production mode?
 const isProduction = process.env.NODE_ENV === "production"
@@ -19,11 +19,15 @@ Sparky.task("default", ["copy-html"], () => {
   const fuse = FuseBox.init({
     homeDir: "src",
     output: `${OUTPUT_DIR}/$name.js`,
-    target: "electron",
     log: isProduction,
     cache: !isProduction,
     sourceMaps: true,
     tsConfig: "tsconfig.json",
+    plugins: [
+      [
+        CSSPlugin({group: 'bundle.css', outFile: 'out/app.css'})
+      ]
+    ]
   })
 
   // start the hot reload server
@@ -45,9 +49,8 @@ Sparky.task("default", ["copy-html"], () => {
   // bundle the electron renderer code
   const rendererBundle = fuse
     .bundle("renderer")
-    .instructions("> [renderer/main.tsx] +fuse-box-css")
-    .plugin(CSSPlugin())
-    .plugin(CopyPlugin({ useDefault: false, files: ASSETS, dest: "assets", resolve: "assets/" }))
+    .target('electron')
+    .instructions("> [renderer/main.tsx] + fuse-box-css")
 
   // and watch & hot reload unless we're bundling for production
   if (!isProduction) {
